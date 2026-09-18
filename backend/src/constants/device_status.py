@@ -1,0 +1,1 @@
+DeviceStatus = ["AVAILABLE", "UNAVAILABLE"]

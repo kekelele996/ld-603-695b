@@ -1,0 +1,1 @@
+InspectionResultStatus = ["NORMAL", "ABNORMAL"]

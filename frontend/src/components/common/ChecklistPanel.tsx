@@ -1,5 +1,15 @@
-import { StatusBadge } from "./StatusBadge";
+import type { ReactNode } from "react";
 
-export function ChecklistPanel({ title = "ChecklistPanel", value = "READY" }: { title?: string; value?: string }) {
-  return <div className="shared-widget"><strong>{title}</strong><StatusBadge value={value} /></div>;
+export function ChecklistPanel({ title, children, footer }: {
+  title: string;
+  children: ReactNode;
+  footer?: ReactNode;
+}) {
+  return (
+    <section className="panel checklist-panel">
+      <h2>{title}</h2>
+      <div className="checklist-body">{children}</div>
+      {footer ? <div className="checklist-footer">{footer}</div> : null}
+    </section>
+  );
 }

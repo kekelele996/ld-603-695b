@@ -1,21 +1,51 @@
 import { mockData } from "../mocks/seedData";
+import { idempotencyKey, request } from "./client";
+import { identityHeaders } from "./session";
 import type { HazardTicket } from "../types/HazardTicket";
 
-const endpoint = "/api/hazard-ticket";
+const endpoint = "/hazard-ticket";
 
 export async function listHazardTicket(): Promise<HazardTicket[]> {
-  if (typeof fetch !== "undefined" && endpoint.startsWith("/api") && true) {
-    try {
-      const res = await fetch(endpoint);
-      if (res.ok) return await res.json();
-    } catch {
-      // Local mock fallback keeps the UI available during offline review.
-    }
+  try {
+    return await request<HazardTicket[]>(endpoint, { headers: identityHeaders() });
+  } catch {
+    // Local mock fallback keeps the UI available during offline review.
+    return [...(mockData.hazardTicket as unknown as HazardTicket[])];
   }
-  return [...(mockData.hazardTicket as unknown as HazardTicket[])];
 }
 
-export async function saveHazardTicket(payload: HazardTicket) {
-  console.info("save HazardTicket", payload);
-  return payload;
+export async function createHazardTicket(
+  payload: { result_id: number; severity: string; owner_id: number; deadline: string },
+  key: string = idempotencyKey("hazard-create")
+): Promise<HazardTicket> {
+  return request<HazardTicket>(endpoint, {
+    method: "POST",
+    headers: identityHeaders({ "Idempotency-Key": key }),
+    body: JSON.stringify(payload)
+  });
+}
+
+export async function submitRectification(
+  ticketId: number,
+  rectifyNote: string,
+  key: string = idempotencyKey("hazard-rectify")
+): Promise<HazardTicket> {
+  return request<HazardTicket>(`${endpoint}/${ticketId}/rectify`, {
+    method: "POST",
+    headers: identityHeaders({ "Idempotency-Key": key }),
+    body: JSON.stringify({ rectify_note: rectifyNote })
+  });
+}
+
+export async function reinspectHazardTicket(
+  ticketId: number,
+  passed: boolean,
+  reinspectNote: string,
+  key: string = idempotencyKey("hazard-reinspect")
+): Promise<HazardTicket> {
+  return request<HazardTicket>(`${endpoint}/${ticketId}/reinspect`, {
+    method: "POST",
+    headers: identityHeaders({ "Idempotency-Key": key }),
+    body: JSON.stringify({ passed, reinspect_note: reinspectNote })
+  });
 }

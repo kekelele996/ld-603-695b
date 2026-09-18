@@ -1,1 +1,21 @@
-ERROR_MESSAGES = {"AUTH_REQUIRED": "missing token", "RBAC_DENIED": "role denied", "VALIDATION_FAILED": "invalid payload"}
+ERROR_MESSAGES = {
+    "AUTH_REQUIRED": "missing token",
+    "RBAC_DENIED": "role denied",
+    "VALIDATION_FAILED": "invalid payload",
+    "RATE_LIMITED": "too many requests",
+    "RESULT_NOT_FOUND": "inspection result not found",
+    "RESULT_NOT_ABNORMAL": "only ABNORMAL inspection result can raise a hazard ticket",
+    "RESULT_ITEM_DUPLICATED": "the checklist item of this task has already been submitted",
+    "TASK_NOT_FOUND": "inspection task not found",
+    "TASK_DEVICE_MISMATCH": "device does not belong to this inspection task",
+    "DEVICE_NOT_FOUND": "fire device not found",
+    "HAZARD_NOT_FOUND": "hazard ticket not found",
+    "DUPLICATE_ACTIVE_HAZARD": "this inspection result already has an active hazard ticket",
+    "HAZARD_NOT_OPEN": "hazard ticket is not OPEN and cannot accept rectification",
+    "HAZARD_NOT_RECTIFIED": "hazard ticket is not RECTIFIED and cannot be re-inspected",
+    "NOT_ORIGINAL_INSPECTOR": "only the original inspector may re-inspect this hazard",
+    "RECTIFY_NOTE_REQUIRED": "rectification note is required",
+    "INVALID_SEVERITY": "severity must be one of LOW/MEDIUM/HIGH/CRITICAL",
+    "INVALID_RESULT_STATUS": "result_status must be NORMAL or ABNORMAL",
+    "IDEMPOTENCY_REPLAYED": "request replayed with an Idempotency-Key that was already processed"
+}

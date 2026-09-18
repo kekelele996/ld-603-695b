@@ -6,6 +6,6 @@ export interface FireDevice {
   floor: string;
   location_desc: string;
   install_date: string;
-  status: string;
+  status: string;              // AVAILABLE / UNAVAILABLE
   next_maintenance_at: string;
 }
