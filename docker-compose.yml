@@ -23,7 +23,8 @@ services:
       dockerfile: Dockerfile
     container_name: ${COMPOSE_PROJECT_NAME:-fire-inspect}-backend
     env_file:
-      - .env
+      - path: .env
+        required: false
     environment:
       PORT: 8000
       DB_HOST: db
@@ -48,7 +49,8 @@ services:
       dockerfile: Dockerfile
     container_name: ${COMPOSE_PROJECT_NAME:-fire-inspect}-frontend
     env_file:
-      - .env
+      - path: .env
+        required: false
     ports:
       - "${FRONTEND_PORT:-20103}:80"
     depends_on:

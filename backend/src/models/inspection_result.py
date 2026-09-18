@@ -1,4 +1,6 @@
 from pydantic import BaseModel
+
+
 class InspectionResult(BaseModel):
     id: int | float
     task_id: int | float
@@ -8,3 +10,5 @@ class InspectionResult(BaseModel):
     measured_value: str
     photo_url: str
     note: str
+    submitted: bool = False
+    inspector_id: int | float | None = None

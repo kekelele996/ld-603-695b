@@ -1,4 +1,6 @@
 from pydantic import BaseModel
+
+
 class FireDevice(BaseModel):
     id: int | float
     building_id: int | float

@@ -1,9 +1,15 @@
+import { DeviceStatusText } from "./DeviceStatus";
 import { DeviceTypeText } from "./DeviceType";
-import { InspectionStatusText } from "./InspectionStatus";
 import { HazardSeverityText } from "./HazardSeverity";
+import { InspectionResultStatusText } from "./InspectionResultStatus";
+import { InspectionStatusText } from "./InspectionStatus";
+import { RectifyStatusText } from "./RectifyStatus";
 
 export const STATUS_TEXT = {
   DeviceType: DeviceTypeText,
   InspectionStatus: InspectionStatusText,
-  HazardSeverity: HazardSeverityText
+  HazardSeverity: HazardSeverityText,
+  DeviceStatus: DeviceStatusText,
+  InspectionResultStatus: InspectionResultStatusText,
+  RectifyStatus: RectifyStatusText
 };
